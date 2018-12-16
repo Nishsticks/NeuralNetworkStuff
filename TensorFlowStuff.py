@@ -18,22 +18,22 @@ model.add(tf.keras.layers.Dense(10, activation=tf.nn.softmax))
 
 model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
-model.fit(x_train, y_train, epochs=3)  # train the model
+model.fit(x_train, y_train, epochs=6)  # train the model
 
 
-TestImg = cv2.imread('Test62.jpg', 0)
+TestImg = cv2.imread('number2invert.jpg', 0)
 
 
-retval, procImage = cv2.threshold(TestImg, 120, 255, cv2.THRESH_BINARY_INV)
+retval, procImage = cv2.threshold(TestImg, 100, 255, cv2.THRESH_BINARY_INV)
 
 
 newArray = np.zeros(shape=(10000, 28, 28))
 
-myTest = tf.convert_to_tensor(TestImg)
+myTest = tf.convert_to_tensor(newArray)
 
 
 
-newArray[0] = procImage
+newArray[0] = TestImg
 predictions = model.predict([newArray])
 
 print(np.argmax(predictions[0]))
@@ -41,7 +41,8 @@ print(np.argmax(predictions[0]))
 plt.imshow(x_test[0])
 cv2.imshow('number', x_test[0])
 cv2.imshow('New Window', procImage)
-plt.imshow(procImage)
+plt.imshow(newArray[0])
+
 plt.show()
 
 
