@@ -21,7 +21,7 @@ model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=
 model.fit(x_train, y_train, epochs=6)  # train the model
 
 
-TestImg = cv2.imread('number2invert.jpg', 0)
+TestImg = cv2.imread('Test5Crop.jpg', 0)
 
 
 retval, procImage = cv2.threshold(TestImg, 100, 255, cv2.THRESH_BINARY_INV)
